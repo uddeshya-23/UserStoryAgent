@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jira Story Generator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div id="auth-section" class="hidden">
+      <h2>Sign in to Continue</h2>
+      <button id="login" class="primary-button">
+        <img src="icons/google.svg" alt="Google" class="icon">
+        Sign in with Google
+      </button>
+    </div>
+
+    <div id="main-section" class="hidden">
+      <div id="user-info">
+        <img id="user-avatar" class="avatar" src="" alt="Profile">
+        <span id="user-email"></span>
+        <button id="logout" class="text-button">Sign out</button>
+      </div>
+
+      <div id="error-banner" class="hidden">
+        <span id="error-message"></span>
+        <button id="configure-api" class="link-button">Configure API Key</button>
+      </div>
+
+      <div class="input-section">
+        <label for="input-text">Story Description</label>
+        <textarea 
+          id="input-text" 
+          placeholder="Describe your story here. Be as detailed as possible for better results..."
+        ></textarea>
+      </div>
+
+      <button id="generate" class="primary-button">
+        <span class="button-text">Generate Story</span>
+        <div class="spinner hidden"></div>
+      </button>
+
+      <div class="output-section hidden" id="output-section">
+        <div class="output-header">
+          <h3>Generated Story</h3>
+          <button id="copy" class="secondary-button">
+        <img src="icons/copy.svg" alt="Copy" class="icon">
+        Copy to Clipboard
+          </button>
+        </div>
+
+        <div class="preview" id="preview">
+          <div id="output"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="lib/api.js"></script>
+  <script src="lib/storage.js"></script>
+  <script src="lib/auth.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

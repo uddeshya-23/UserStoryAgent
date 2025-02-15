@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jira Story Generator Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Configuration</h1>
+
+    <div class="form-group">
+      <label for="apiKey">
+        Groq API Key
+        <div class="tooltip">
+          ?
+          <span class="tooltip-text">
+            Your Groq API key can be found in your Groq Console at https://console.groq.com/keys
+          </span>
+        </div>
+      </label>
+      <input type="password" id="apiKey" placeholder="Enter your Groq API key (starts with gsk_)">
+    </div>
+
+    <div class="buttons">
+      <button id="save">Save</button>
+    </div>
+
+    <div id="status"></div>
+
+    <div class="help-text">
+      <h2>Getting Started</h2>
+      <ol>
+        <li>Sign up for a Groq account at <a href="https://console.groq.com" target="_blank">console.groq.com</a></li>
+        <li>Generate an API key in your Groq Console</li>
+        <li>Enter the API key above and click Save</li>
+        <li>Click the extension icon to start generating stories</li>
+      </ol>
+    </div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
