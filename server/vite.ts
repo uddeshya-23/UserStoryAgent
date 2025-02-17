@@ -3,6 +3,7 @@ import fs from "fs";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { createServer as createViteServer, createLogger } from "vite";
+import { WebSocketServer } from "ws";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 import { type Server } from "http";
@@ -23,24 +24,21 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
-  const serverOptions = {
-    middlewareMode: true,
-    hmr: { server },
-    allowedHosts: true,
-  };
+  const wsServer = new WebSocketServer({ noServer: true });
+
+  server.on("upgrade", (request, socket, head) => {
+    wsServer.handleUpgrade(request, socket, head, (ws) => {
+      wsServer.emit("connection", ws, request);
+    });
+  });
 
   const vite = await createViteServer({
-    ...viteConfig,
-    configFile: false,
-    customLogger: {
-      ...viteLogger,
-      error: (msg, options) => {
-        viteLogger.error(msg, options);
-        process.exit(1);
+    server: {
+      middlewareMode: true,
+      hmr: {
+        server: wsServer as any, // Type assertion to avoid type errors
       },
     },
-    server: serverOptions,
-    appType: "custom",
   });
 
   app.use(vite.middlewares);

@@ -23,13 +23,13 @@ class StorageService {
       }
       // In development, use environment variable
       const apiKey = import.meta.env.VITE_GORQ_API_KEY || null;
-      console.log("API key from environment variable:", apiKey);
+      // console.log("API key from environment variable:", apiKey);
       return apiKey;
     } catch (error) {
       console.error("Error retrieving API key:", error);
       // Fallback to environment variable if Chrome storage fails
       const fallbackApiKey = import.meta.env.VITE_GORQ_API_KEY || null;
-      console.log("Fallback API key from environment variable:", fallbackApiKey);
+      // console.log("Fallback API key from environment variable:", fallbackApiKey);
       return fallbackApiKey;
     }
   }

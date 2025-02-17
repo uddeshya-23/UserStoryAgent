@@ -12,19 +12,12 @@ export default function Home() {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Log the environment variable to check if it's being loaded correctly
-    console.log("Environment variable VITE_GORQ_API_KEY:", import.meta.env.VITE_GORQ_API_KEY);
-
     // Load API key on component mount
     storage.getApiKey().then(key => {
-      console.log("Retrieved API key:", key);
       setApiKey(key);
       if (!key) {
         setError('API key not configured. Please set it in the extension options.');
       }
-    }).catch(err => {
-      setError('Failed to retrieve API key. Please check your configuration.');
-      console.error("Error retrieving API key:", err);
     });
   }, []);
 
@@ -66,7 +59,7 @@ export default function Home() {
     <div className="container mx-auto p-4 max-w-2xl">
       <div className="input-section mb-4">
         <label className="block mb-2 font-medium text-gray-700">
-          User Story Research & Description Agent
+          Story Description
         </label>
         <textarea
           className="w-full h-32 p-2 border rounded-md resize-vertical"
