@@ -1,3 +1,5 @@
+https://userstoryresearchagent.onrender.com/
+
 cp manifest.dev.json manifest.json
    ```
 3. Update `manifest.json`:
